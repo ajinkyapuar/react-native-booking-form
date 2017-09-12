@@ -1,6 +1,7 @@
 import React from 'react';
 import { StatusBar, StyleSheet, Text, View, TextInput, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { Font } from 'expo';
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
 
 const DeviceWidth = Dimensions.get('window').width;
 const DeviceHeight = Dimensions.get('window').height;
@@ -37,17 +38,27 @@ export default class App extends React.Component {
       return (
         <View style={styles.container}>
 
-        <Text style={[styles.flexRow, styles.text, styles.headingText]}>
+        <View style={[styles.flexRow]}>
+        <Text style={[styles.text, styles.headingText]}>
         Log-in now to view your upcoming and past flights
         </Text>
+        </View>
 
-        <Text style={[styles.flexRow, styles.text , styles.titleText]}>
+
+        <View style={[styles.flexRow]}>
+        <FontAwesome style={[styles.smileIcon]} name="smile-o" size={28} color="black" />
+        <Text style={[styles.text , styles.titleText]}>
         Cut the queue. Check in now.
         </Text>
+        <FontAwesome style={[styles.smileIcon]} name="smile-o" size={28} color="black" />
+        </View>
 
-        <Text style={[styles.flexRow, styles.text, styles.subtitleText]}>
-        "Check in online between 72 hours and 1 hour before departure. Head to the airport and get outta here. It's that simple."
+        <View style={[styles.flexRow]}>
+        <Text style={[styles.text, styles.subtitleText]}>
+        "Check in online between 72 hours and 1 hour before departure. Head to the airport and get outta here. It's that simple!"
         </Text>
+        </View>
+
 
         <View style={[styles.flexRow]}>
         <TextInput
@@ -69,6 +80,7 @@ export default class App extends React.Component {
         </View>
 
         <View style={[styles.flexRow]}>
+        <Ionicons style={[styles.locIcon]} name="md-pin" size={28} color="black" />
         <TextInput
         style={[styles.textInput, styles.text, styles.textInputLOC]}
         underlineColorAndroid="transparent"
@@ -79,9 +91,11 @@ export default class App extends React.Component {
         />
         </View>
 
-        <TouchableOpacity style={[styles.flexRow, styles.submitBtn]}>
+        <View style={[styles.flexRow]}>
+        <TouchableOpacity style={[styles.submitBtn]}>
         <Text style={[styles.text, styles.buttonText ]}>Find booking</Text>
         </TouchableOpacity>
+        </View>
 
         </View>
       );
@@ -111,6 +125,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 10
   },
   text: {
     fontFamily: 'open-sans-regular',
@@ -135,7 +151,7 @@ const styles = StyleSheet.create({
   },
   textInputBR: {
     width: '50%',
-    marginLeft: 5,
+    // marginLeft: 5,
     marginRight: 2.5,
     marginTop: 15,
     marginBottom: 10,
@@ -143,7 +159,7 @@ const styles = StyleSheet.create({
   textInputLN: {
     width: '50%',
     marginLeft: 2.5,
-    marginRight: 5,
+    // marginRight: 5,
     marginTop: 15,
     marginBottom: 10,
 
@@ -152,13 +168,24 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: 10,
     marginBottom: 10,
+    marginRight: 15,
+    paddingHorizontal: 45
 
+
+  },
+  smileIcon: {
+    padding: 5,
+  },
+  locIcon: {
+    left: 60,
+    marginRight: 25
 
   },
   submitBtn: {
     backgroundColor: 'black',
     borderRadius:5,
     borderWidth:2,
+    height: 50,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
