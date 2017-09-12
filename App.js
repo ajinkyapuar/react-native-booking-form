@@ -17,7 +17,7 @@ export default class App extends React.Component {
   }
 
   async componentDidMount() {
-    
+
     StatusBar.setHidden(true);
 
     await Font.loadAsync({
@@ -140,15 +140,16 @@ const styles = StyleSheet.create({
   },
   textInputBR: {
     width: '50%',
-    marginLeft: 2.5,
+    marginLeft: 5,
     marginRight: 2.5,
     marginTop: 15,
     marginBottom: 20,
+    // paddingLeft: 10,
   },
   textInputLN: {
     width: '50%',
     marginLeft: 2.5,
-    marginRight: 2.5,
+    marginRight: 5,
     marginTop: 15,
     marginBottom: 20,
 
@@ -156,9 +157,23 @@ const styles = StyleSheet.create({
   textInputLOC: {
     width: '100%',
     marginTop: 20,
-    marginBottom: 20,
+    marginBottom: 10,
 
 
   },
+  submitBtn: {
+    backgroundColor: 'black',
+    borderRadius:5,
+    borderWidth:2,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  }
 
 });
