@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar, StyleSheet, Text, View, TextInput, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { Font } from 'expo';
 
 export default class App extends React.Component {
@@ -10,10 +10,15 @@ export default class App extends React.Component {
 
   state = {
     appIsReady: false,
+    textInputBR:'',
+    textInputLN:'',
+    textInputLOC:'',
 
   }
 
   async componentDidMount() {
+    
+    StatusBar.setHidden(true);
 
     await Font.loadAsync({
       'open-sans-regular': require('./assets/fonts/OpenSans-Regular.ttf'),
@@ -40,6 +45,38 @@ export default class App extends React.Component {
         <Text style={[styles.flexRow, styles.text, styles.subtitleText]}>
         "Check in online between 72 hours and 1 hour before departure. Head to the airport and get outta here. It's that simple."
         </Text>
+
+        <View style={[styles.flexRow]}>
+        <TextInput
+        style={[styles.textInput, styles.text, styles.textInputBR]}
+        underlineColorAndroid="transparent"
+        placeholder="Booking Reference"
+        placeholderTextColor="black"
+        value={this.state.textInputBR}
+        onChangeText={(text) => this.setState({textInputBR: text})}
+        />
+        <TextInput
+        style={[styles.textInput, styles.text, styles.textInputLN]}
+        underlineColorAndroid="transparent"
+        placeholder="Last Name"
+        placeholderTextColor="black"
+        value={this.state.textInputLN}
+        onChangeText={(text) => this.setState({textInputLN: text})}
+        />
+        </View>
+
+        <TextInput
+        style={[styles.textInput, styles.text, styles.textInputLOC]}
+        underlineColorAndroid="transparent"
+        placeholder="Departing"
+        placeholderTextColor="black"
+        value={this.state.textInputLOC}
+        onChangeText={(text) => this.setState({textInputLOC: text})}
+        />
+
+        <TouchableOpacity style={[styles.flexRow, styles.submitBtn]}>
+        <Text style={[styles.text, styles.buttonText ]}>Find booking</Text>
+        </TouchableOpacity>
 
         </View>
       );
@@ -83,6 +120,44 @@ const styles = StyleSheet.create({
 
   },
   subtitleText: {
+
+  },
+  textInput: {
+    // backgroundColor: 'white',
+    // width: '100%',
+    height: 50,
+    borderColor: '#eee',
+    borderRadius:5,
+    borderWidth:2,
+    paddingHorizontal: 20,
+    // marginTop: 10,
+    // marginBottom: 15,
+    // marginLeft: 3,
+    // marginRight: 3,
+
+
+
+  },
+  textInputBR: {
+    width: '50%',
+    marginLeft: 2.5,
+    marginRight: 2.5,
+    marginTop: 15,
+    marginBottom: 20,
+  },
+  textInputLN: {
+    width: '50%',
+    marginLeft: 2.5,
+    marginRight: 2.5,
+    marginTop: 15,
+    marginBottom: 20,
+
+  },
+  textInputLOC: {
+    width: '100%',
+    marginTop: 20,
+    marginBottom: 20,
+
 
   },
 
