@@ -2,6 +2,9 @@ import React from 'react';
 import { StatusBar, StyleSheet, Text, View, TextInput, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { Font } from 'expo';
 
+const DeviceWidth = Dimensions.get('window').width;
+const DeviceHeight = Dimensions.get('window').height;
+
 export default class App extends React.Component {
 
   constructor(props){
@@ -123,20 +126,11 @@ const styles = StyleSheet.create({
 
   },
   textInput: {
-    // backgroundColor: 'white',
-    // width: '100%',
     height: 50,
     borderColor: '#eee',
     borderRadius:5,
     borderWidth:2,
     paddingHorizontal: 20,
-    // marginTop: 10,
-    // marginBottom: 15,
-    // marginLeft: 3,
-    // marginRight: 3,
-
-
-
   },
   textInputBR: {
     width: '50%',
@@ -144,7 +138,6 @@ const styles = StyleSheet.create({
     marginRight: 2.5,
     marginTop: 15,
     marginBottom: 20,
-    // paddingLeft: 10,
   },
   textInputLN: {
     width: '50%',
