@@ -28,9 +28,19 @@ export default class App extends React.Component {
     if (this.state.appIsReady) {
       return (
         <View style={styles.container}>
-        <Text style={[styles.flexRow, styles.text, styles.headingText]}>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+
+        <Text style={[styles.flexRow, styles.text, styles.headingText]}>
+        Log-in now to view your upcoming and past flights
+        </Text>
+
+        <Text style={[styles.flexRow, styles.text , styles.titleText]}>
+        Cut the queue. Check in now.
+        </Text>
+
+        <Text style={[styles.flexRow, styles.text, styles.subtitleText]}>
+        "Check in online between 72 hours and 1 hour before departure. Head to the airport and get outta here. It's that simple."
+        </Text>
+
         </View>
       );
     }
@@ -42,7 +52,6 @@ export default class App extends React.Component {
         </Text>
         </View>
       );
-
     }
   }
 }
@@ -53,6 +62,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 10,
   },
   flexRow: {
     flex: 0.1,
@@ -64,4 +74,16 @@ const styles = StyleSheet.create({
     fontFamily: 'open-sans-regular',
     // fontSize: 16
   },
+  headingText: {
+
+  },
+  titleText: {
+    fontWeight: 'bold',
+    fontSize: 20
+
+  },
+  subtitleText: {
+
+  },
+
 });
