@@ -68,6 +68,7 @@ export default class App extends React.Component {
         />
         </View>
 
+        <View style={[styles.flexRow]}>
         <TextInput
         style={[styles.textInput, styles.text, styles.textInputLOC]}
         underlineColorAndroid="transparent"
@@ -76,6 +77,7 @@ export default class App extends React.Component {
         value={this.state.textInputLOC}
         onChangeText={(text) => this.setState({textInputLOC: text})}
         />
+        </View>
 
         <TouchableOpacity style={[styles.flexRow, styles.submitBtn]}>
         <Text style={[styles.text, styles.buttonText ]}>Find booking</Text>
@@ -107,12 +109,11 @@ const styles = StyleSheet.create({
   flexRow: {
     flex: 0.1,
     flexDirection: 'row',
-    // justifyContent: 'center',
-    // alignItems: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
     fontFamily: 'open-sans-regular',
-    // fontSize: 16
   },
   headingText: {
 
@@ -137,19 +138,19 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginRight: 2.5,
     marginTop: 15,
-    marginBottom: 20,
+    marginBottom: 10,
   },
   textInputLN: {
     width: '50%',
     marginLeft: 2.5,
     marginRight: 5,
     marginTop: 15,
-    marginBottom: 20,
+    marginBottom: 10,
 
   },
   textInputLOC: {
     width: '100%',
-    marginTop: 20,
+    marginTop: 10,
     marginBottom: 10,
 
 
@@ -161,6 +162,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 10,
 
 
   },
