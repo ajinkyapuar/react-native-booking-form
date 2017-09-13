@@ -23,32 +23,6 @@ export default class App extends React.Component {
 
   }
 
-  componentWillMount () {
-    this.keyboardWillShowSub = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
-    this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
-  }
-
-  componentWillUnmount() {
-    this.keyboardWillShowSub.remove();
-    this.keyboardWillHideSub.remove();
-  }
-
-  keyboardWillShow = (event) => {
-
-    Animated.timing(this.keyboardHeight, {
-      duration: event.duration,
-      toValue: event.endCoordinates.height,
-    }).start();
-  };
-
-  keyboardWillHide = (event) => {
-
-    Animated.timing(this.keyboardHeight, {
-      duration: event.duration,
-      toValue: 0,
-    }).start();
-  };
-
   async componentDidMount() {
 
     StatusBar.setHidden(true);
@@ -84,6 +58,11 @@ export default class App extends React.Component {
     var bool = regex.test(text);
     // console.log(bool);
     return !bool
+  }
+
+  onSubmit(){
+    console.log("Submit");
+    
   }
 
   render() {
@@ -167,7 +146,9 @@ export default class App extends React.Component {
         </View>
 
         <View style={[styles.flexRow]}>
-        <TouchableOpacity style={[styles.submitBtn]}>
+        <TouchableOpacity style={[styles.submitBtn]}
+        onPress={this.onSubmit}
+        >
         <Text style={[styles.text, styles.buttonText ]}>Find booking</Text>
         </TouchableOpacity>
         </View>
