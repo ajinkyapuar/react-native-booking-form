@@ -64,7 +64,7 @@ export default class App extends React.Component {
 
   validateBR(text){
     // console.log(text, text.length);
-    var regex = /([A-Z0-9]{1,6})/;
+    var regex = /([A-Z0-9]{6})/;
     var bool = regex.test(text);
     // console.log(bool);
     return !bool
