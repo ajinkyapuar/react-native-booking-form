@@ -17,9 +17,9 @@ export default class App extends React.Component {
     textInputBR:'',
     textInputLN:'',
     textInputLOC:'',
-    BRError: false,
-    LNError: false,
-    LOCError: false,
+    validityBR: false,
+    validityLN: false,
+    validityLOC: false,
 
   }
 
@@ -64,25 +64,26 @@ export default class App extends React.Component {
 
   validateBR(text){
     // console.log(text, text.length);
-    var regex = /([A-Z0-9]{6})/g;
+    var regex = /([A-Z0-9]{1,6})/;
     var bool = regex.test(text);
-    if(!bool){
-      return true;
-    }
+    // console.log(bool);
+    return !bool
   }
 
   validateLN(text){
-    console.log(text);
-
-
-
+    // console.log(text, text.length);
+    var regex = /[a-zA-Z]{2,}/;
+    var bool = regex.test(text);
+    // console.log(bool);
+    return !bool
   }
 
   validateLOC(text){
-    console.log(text);
-
-
-
+    // console.log(text, text.length);
+    var regex = /[A-Z]{3,}/;
+    var bool = regex.test(text);
+    // console.log(bool);
+    return !bool
   }
 
   render() {
@@ -116,7 +117,7 @@ export default class App extends React.Component {
 
         <View style={[styles.flexRow]}>
         <TextInput
-        style={[styles.textInput, styles.text, styles.textInputBR, this.state.BRError && styles.textInputError]}
+        style={[styles.textInput, styles.text, styles.textInputBR, this.state.validityBR && styles.textInputError]}
         underlineColorAndroid="transparent"
         placeholder="Booking Reference"
         placeholderTextColor="black"
@@ -126,13 +127,13 @@ export default class App extends React.Component {
         onChangeText={(text) => this.setState({textInputBR: text})}
         onBlur={() => {
           this.setState({
-            BRError: this.validateBR(this.state.textInputBR)
+            validityBR: this.validateBR(this.state.textInputBR)
           })
         }}
         />
 
         <TextInput
-        style={[styles.textInput, styles.text, styles.textInputLN, this.state.LNError && styles.textInputError]}
+        style={[styles.textInput, styles.text, styles.textInputLN, this.state.validityLN && styles.textInputError]}
         underlineColorAndroid="transparent"
         placeholder="Last Name"
         placeholderTextColor="black"
@@ -141,7 +142,7 @@ export default class App extends React.Component {
         onChangeText={(text) => this.setState({textInputLN: text})}
         onBlur={() => {
           this.setState({
-            LNError: this.validateLN(this.state.textInputLN)
+            validityLN: this.validateLN(this.state.textInputLN)
           })
         }}
         />
@@ -150,7 +151,7 @@ export default class App extends React.Component {
         <View style={[styles.flexRow]}>
         <Ionicons style={[styles.locIcon]} name="md-pin" size={28} color="black" />
         <TextInput
-        style={[styles.textInput, styles.text, styles.textInputLOC, this.state.LOCError && styles.textInputError]}
+        style={[styles.textInput, styles.text, styles.textInputLOC, this.state.validityLOC && styles.textInputError]}
         underlineColorAndroid="transparent"
         placeholder="Departing"
         placeholderTextColor="black"
@@ -159,7 +160,7 @@ export default class App extends React.Component {
         onChangeText={(text) => this.setState({textInputLOC: text})}
         onBlur={() => {
           this.setState({
-            LOCError: this.validateLOC(this.state.textInputLOC)
+            validityLOC: this.validateLOC(this.state.textInputLOC)
           })
         }}
         />
