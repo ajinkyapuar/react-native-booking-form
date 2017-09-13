@@ -17,6 +17,9 @@ export default class App extends React.Component {
     textInputBR:'',
     textInputLN:'',
     textInputLOC:'',
+    BRError: false,
+    LNError: false,
+    LOCError: false,
 
   }
 
@@ -62,7 +65,7 @@ export default class App extends React.Component {
 
         <View style={[styles.flexRow]}>
         <TextInput
-        style={[styles.textInput, styles.text, styles.textInputBR]}
+        style={[styles.textInput, styles.text, styles.textInputBR, this.state.BRError && styles.textInputError]}
         underlineColorAndroid="transparent"
         placeholder="Booking Reference"
         placeholderTextColor="black"
@@ -70,7 +73,7 @@ export default class App extends React.Component {
         onChangeText={(text) => this.setState({textInputBR: text})}
         />
         <TextInput
-        style={[styles.textInput, styles.text, styles.textInputLN]}
+        style={[styles.textInput, styles.text, styles.textInputLN, this.state.LNError && styles.textInputError]}
         underlineColorAndroid="transparent"
         placeholder="Last Name"
         placeholderTextColor="black"
@@ -82,7 +85,7 @@ export default class App extends React.Component {
         <View style={[styles.flexRow]}>
         <Ionicons style={[styles.locIcon]} name="md-pin" size={28} color="black" />
         <TextInput
-        style={[styles.textInput, styles.text, styles.textInputLOC]}
+        style={[styles.textInput, styles.text, styles.textInputLOC, this.state.LOCError && styles.textInputError]}
         underlineColorAndroid="transparent"
         placeholder="Departing"
         placeholderTextColor="black"
@@ -148,6 +151,9 @@ const styles = StyleSheet.create({
     borderRadius:5,
     borderWidth:2,
     paddingHorizontal: 20,
+  },
+  textInputError: {
+    borderColor: '#F44336',
   },
   textInputBR: {
     width: '50%',
