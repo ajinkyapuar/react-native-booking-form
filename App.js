@@ -63,21 +63,26 @@ export default class App extends React.Component {
   }
 
   validateBR(text){
-    console.log(text);
-
-    return true
+    // console.log(text, text.length);
+    var regex = /([A-Z0-9]{6})/g;
+    var bool = regex.test(text);
+    if(!bool){
+      return true;
+    }
   }
 
   validateLN(text){
     console.log(text);
 
-    return true
+
+
   }
 
   validateLOC(text){
     console.log(text);
 
-    return true
+
+
   }
 
   render() {
@@ -115,14 +120,17 @@ export default class App extends React.Component {
         underlineColorAndroid="transparent"
         placeholder="Booking Reference"
         placeholderTextColor="black"
-        returnKeyLabel = {"next"}
+        returnKeyLabel={"next"}
+        maxLength={6}
         value={this.state.textInputBR}
         onChangeText={(text) => this.setState({textInputBR: text})}
         onBlur={() => {
           this.setState({
             BRError: this.validateBR(this.state.textInputBR)
           })
-        }}/>
+        }}
+        />
+
         <TextInput
         style={[styles.textInput, styles.text, styles.textInputLN, this.state.LNError && styles.textInputError]}
         underlineColorAndroid="transparent"
@@ -226,19 +234,19 @@ const styles = StyleSheet.create({
     // marginLeft: 5,
     marginRight: 2.5,
     marginTop: 15,
-    marginBottom: 10,
+    marginBottom: 5,
   },
   textInputLN: {
     width: '50%',
     marginLeft: 2.5,
     // marginRight: 5,
     marginTop: 15,
-    marginBottom: 10,
+    marginBottom: 5,
 
   },
   textInputLOC: {
     width: '100%',
-    marginTop: 10,
+    marginTop: 5,
     marginBottom: 10,
     marginRight: 15,
     paddingHorizontal: 45
