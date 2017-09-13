@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar, StyleSheet, Text, View, TextInput, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { StatusBar, StyleSheet, Text, View, TextInput, Image, TouchableOpacity, Dimensions, Keyboard, ScrollView, KeyboardAvoidingView } from 'react-native';
 import { Font } from 'expo';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 
@@ -23,6 +23,32 @@ export default class App extends React.Component {
 
   }
 
+  componentWillMount () {
+    this.keyboardWillShowSub = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
+    this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
+  }
+
+  componentWillUnmount() {
+    this.keyboardWillShowSub.remove();
+    this.keyboardWillHideSub.remove();
+  }
+
+  keyboardWillShow = (event) => {
+
+    Animated.timing(this.keyboardHeight, {
+      duration: event.duration,
+      toValue: event.endCoordinates.height,
+    }).start();
+  };
+
+  keyboardWillHide = (event) => {
+
+    Animated.timing(this.keyboardHeight, {
+      duration: event.duration,
+      toValue: 0,
+    }).start();
+  };
+
   async componentDidMount() {
 
     StatusBar.setHidden(true);
@@ -36,9 +62,29 @@ export default class App extends React.Component {
 
   }
 
+  validateBR(text){
+    console.log(text);
+
+    return true
+  }
+
+  validateLN(text){
+    console.log(text);
+
+    return true
+  }
+
+  validateLOC(text){
+    console.log(text);
+
+    return true
+  }
+
   render() {
     if (this.state.appIsReady) {
       return (
+        <KeyboardAvoidingView behavior="padding">
+        <ScrollView>
         <View style={styles.container}>
 
         <View style={[styles.flexRow]}>
@@ -69,16 +115,27 @@ export default class App extends React.Component {
         underlineColorAndroid="transparent"
         placeholder="Booking Reference"
         placeholderTextColor="black"
+        returnKeyLabel = {"next"}
         value={this.state.textInputBR}
         onChangeText={(text) => this.setState({textInputBR: text})}
-        />
+        onBlur={() => {
+          this.setState({
+            BRError: this.validateBR(this.state.textInputBR)
+          })
+        }}/>
         <TextInput
         style={[styles.textInput, styles.text, styles.textInputLN, this.state.LNError && styles.textInputError]}
         underlineColorAndroid="transparent"
         placeholder="Last Name"
         placeholderTextColor="black"
+        returnKeyLabel = {"next"}
         value={this.state.textInputLN}
         onChangeText={(text) => this.setState({textInputLN: text})}
+        onBlur={() => {
+          this.setState({
+            LNError: this.validateLN(this.state.textInputLN)
+          })
+        }}
         />
         </View>
 
@@ -89,8 +146,14 @@ export default class App extends React.Component {
         underlineColorAndroid="transparent"
         placeholder="Departing"
         placeholderTextColor="black"
+        returnKeyLabel = {"next"}
         value={this.state.textInputLOC}
         onChangeText={(text) => this.setState({textInputLOC: text})}
+        onBlur={() => {
+          this.setState({
+            LOCError: this.validateLOC(this.state.textInputLOC)
+          })
+        }}
         />
         </View>
 
@@ -100,7 +163,10 @@ export default class App extends React.Component {
         </TouchableOpacity>
         </View>
 
+
         </View>
+        </ScrollView>
+        </KeyboardAvoidingView>
       );
     }
     else {
